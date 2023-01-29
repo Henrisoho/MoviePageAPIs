@@ -7,7 +7,8 @@ function MovieDetails() {
     const history = useHistory();
     const dispatch = useDispatch();
     const movieDetails = useSelector(store => store.details);
-    console.log(movieDetails.genres)
+    console.log(movieDetails)
+    
     const goBack = (event) =>{
         event.preventDefault()
         history.push('/')
@@ -40,7 +41,6 @@ function MovieDetails() {
                 })}
             </section>
         </main>
-
     );
 }
 

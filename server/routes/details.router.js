@@ -4,9 +4,10 @@ const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
   const id = (req.query.id)
-  console.log(id)
-  const query = `
-    SELECT "movies"."title", "movies"."poster", "movies"."description",
+  console.log(req.query.id)
+  const query = 
+  `
+  SELECT "movies"."title", "movies"."poster", "movies"."description",
   ARRAY_AGG("genres"."name") AS "genres"
   FROM "movies"
   JOIN "movies_genres" ON "movies"."id" = "movies_genres"."movie_id"
