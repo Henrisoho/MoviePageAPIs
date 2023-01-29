@@ -13,8 +13,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 export default function MovieItem({ movie }) {
+const history = useHistory();
 const dispatch = useDispatch()
 
 const onDetails = (event) =>{
