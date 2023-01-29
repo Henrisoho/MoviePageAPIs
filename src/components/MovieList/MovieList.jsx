@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Details from '../Details/Details';
+import Details from '../Details/MovieItem';
 import './MovieList.css'
 
 function MovieList() {

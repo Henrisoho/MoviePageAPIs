@@ -14,30 +14,25 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
 
-export default function Details({ movie }) {
+export default function MovieItem({ movie }) {
+const dispatch = useDispatch()
 
-    const [isClicked, setIsClicked] = useState(true);
-    const handleClicked = () => {
-        if (isClicked === true) {
-            setIsClicked(false);
-        } else {
-            setIsClicked(true)
+const onDetails = (event) =>{
+  dispatch({
+        type: 'GET_MOVIE_DETAILS',
+        payload: {
+          movie_id: movie.id,
         }
-    }
+        
+      })
+}
 
+
+console.log(movie)
     return (
-        <>
-            {isClicked ? (
                 <div>
                     <h3>{movie.title}</h3>
-                    <img onClick={handleClicked} src={movie.poster} alt={movie.title} />
+                    <img onClick={() => {onDetails()}} src={movie.poster} alt={movie.title} />
                 </div>
-            ) : (
-                <div>
-                    <h3 >{movie.title}</h3>
-                    <p>{movie.genre}</p>
-                </div>
-            )}
-        </>
     )
 }
