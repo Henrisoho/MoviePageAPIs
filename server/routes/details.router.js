@@ -6,8 +6,13 @@ router.get('/', (req, res) => {
   const id = (req.query.id)
   console.log(id)
   const query = `
-  SELECT * FROM "movies" 
-  WHERE "id" = $1;
+    SELECT "movies"."title", "movies"."poster", "movies"."description",
+  ARRAY_AGG("genres"."name") AS "genres"
+  FROM "movies"
+  JOIN "movies_genres" ON "movies"."id" = "movies_genres"."movie_id"
+  JOIN "genres" ON "movies_genres"."genre_id" = "genres"."id"
+  WHERE "movies"."id" = $1
+  GROUP BY "movies"."title", "movies"."description", "movies"."poster";
   `
   let sqlValues = [id]
   pool.query(query, sqlValues)
