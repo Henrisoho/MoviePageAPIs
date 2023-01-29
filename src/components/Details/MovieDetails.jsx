@@ -6,8 +6,9 @@ import { useHistory } from 'react-router-dom';
 function MovieDetails() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const movie = useSelector(store => store.details);
-
+    const movieDetails = useSelector(store => store.details);
+    console.log(movieDetails)
+    
     const goBack = (event) =>{
         event.preventDefault()
         history.push('/')
@@ -21,11 +22,15 @@ function MovieDetails() {
         <main>
             <button onClick={goBack}>Back</button>
             <section className="movies">
-                {movie.map(movie => {
+                {movieDetails.map(movie => {
                     return (
                         <div key={movie.id} >
-                            <div>
+                            <div key={movie.id}>
                                 <h3>{movie.title}</h3>
+                                {movie.genres.map(genre => {
+                                    return(
+                                        <div>{genre}</div>
+                                    )})}
                                 <img src={movie.poster} alt={movie.title} />
                                 <div>
                                     {movie.description}
@@ -36,7 +41,6 @@ function MovieDetails() {
                 })}
             </section>
         </main>
-
     );
 }
 
