@@ -19,12 +19,12 @@ const dispatch = useDispatch()
 
 const onDetails = (event) =>{
   dispatch({
-        type: 'GET_MOVIE_DETAILS',
+        type: 'SAGA/GET_MOVIE_DETAILS',
         payload: {
-          movie_id: movie.id,
+          id: movie.id,
         }
-        
       })
+      history.push('/details')
 }
 
 
